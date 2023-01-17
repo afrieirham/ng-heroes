@@ -30,13 +30,18 @@ export class HeroesComponent {
       return;
     }
 
+    // send request to server
     this.heroService.addHero({ name } as Hero).subscribe((hero) => {
+      // update the "state"
       this.heroes.push(hero);
     });
   }
 
   delete(hero: Hero): void {
+    // update the "state"
     this.heroes = this.heroes.filter((h) => h.id !== hero.id);
+
+    // send request to server
     this.heroService.deleteHero(hero.id).subscribe();
   }
 }
